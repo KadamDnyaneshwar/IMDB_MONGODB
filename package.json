@@ -9,8 +9,12 @@
   "author": "swapnil",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "mongoose": "^6.6.5"
+    "module": "^1.2.5",
+    "mongoose": "^6.6.5",
+    "node": "^18.10.0",
+    "router": "^1.3.7"
   }
 }
