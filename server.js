@@ -1,6 +1,5 @@
 const express =require("express");
-const db = require("./models");
-const bodyParser=require("body-parser");
+
 const cors=require("cors");
 
 
@@ -9,12 +8,10 @@ var corsOptions={
   origin:"htpp://localhost:3000"
   };
   app.use(cors(corsOptions));
-  app.use(bodyParser.json());
-  app.use(bodyParser.urlencoded({extended:true}));
-
-
-
-db.mongoose
+  app.use(express.json());
+  app.use(express.urlencoded({extended:true}));
+  const db=require("./app/models")
+  db.mongoose
   .connect(db.url, {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -30,6 +27,7 @@ db.mongoose
   app.get("/", (req, res) => {
     res.json({ message: "Welcome to bezkoder application." });
   });
+  require("./app/routes/movies.routes")(app);
   
   // set port, listen for requests
   const PORT = process.env.PORT || 3000;
