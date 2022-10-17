@@ -1,35 +1,24 @@
 const db = require("../models");
-const Movie =db.movies;
+const Writer =db.writer;
 
-// Create and Save a new movie
+// Create and Save a new Writer
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.title) {
+  if (!req.body.Writer_name) {
     res.status(400).send({ message: "Content can not be empty!" });
     return;
   }
 
-  // Create a movie
-  const movies = new Movie({
-    title: req.body.title,
-    published_year: req.body.published_year,
-    Runtime:req.body.Runtime,
-    Genre:req.body.Genre,      //action ,funny,
-    Website:req.body.Website,
-    Poster:req.body.Poster,
-    Language:req.body.Language,
-    Awards:req.body.Awards,
-    Relased :req.body.Relased , //13 dec 2022
-    Boxoffice:req.body.Boxoffice,
-    Musicby:req.body.Musicby,
-    Budget:req.body.Budget,
-
+  // Create a Writer
+  const writer = new Writer({
+    Writer_name: req.body.Writer_name,
+    
 
   });
 
   // Save movie in the database
-  movies
-    .save(movies)
+  writer
+    .save(writer)
     .then(data => {
       res.send(data);
     })
@@ -42,9 +31,9 @@ exports.create = (req, res) => {
 };
 
 // Retrieve all movie from the database.
-exports.findAll = (req, res,next) => {
-  const title = req.query.title;
-  var condition = title ? { title: { $regex: new RegExp(title), $options: "i" } } : {};
+exports.findAll = (req, res) => {
+  const Writer_name = req.query.Writer_name;
+  var condition = Writer_name ? { Writer_name: { $regex: new RegExp(Writer_name), $options: "i" } } : {};
 
   Movie.find(condition)
     .then(data => {

@@ -1,7 +1,10 @@
+const { Schema, model } = require("mongoose");
+const { movies } = require(".");
+
 module.exports = mongoose => {
   var schema = mongoose.Schema(
     {
-      title: {type:String, require:true},
+
       published_year: {type:String,require:true},
       Relased: {type:String,},
       Runtime: {type:String, require:true},
@@ -10,10 +13,17 @@ module.exports = mongoose => {
         enum : ['Drama','Action','funny','Romance'],
         default: 'Drama'
     },
-    Director: {type:String, require:true},
-    Writer: {type:String, require:true},
-    Actore: {type:String, require:true},
-    },
+    Website: {type:String, require:true},
+    Poster:{type:String},
+    Language:{type:String,require:true},
+    Awards:{type:String},
+    Boxoffice:{type:String},
+    Musicby:{type:String},
+    Budget:{type:String},
+    //Director:[{type:Schema.Types.ObjectId,ref:Director},]
+   
+    }, 
+   
     { timestamps: true }
   );
 
@@ -22,8 +32,13 @@ module.exports = mongoose => {
     const { __v, _id, ...object } = this.toObject();
     object.id = _id;
     return object;
+  
   });
+  
 
   const Movie = mongoose.model("movies", schema);
   return Movie;
 };
+//export const Director=model("director",DirecterSchema)
+
+

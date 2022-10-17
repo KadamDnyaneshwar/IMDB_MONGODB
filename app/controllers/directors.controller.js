@@ -1,35 +1,24 @@
 const db = require("../models");
-const Movie =db.movies;
+const Director =db.directors;
 
 // Create and Save a new movie
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.title) {
+  if (!req.body.Director_name) {
     res.status(400).send({ message: "Content can not be empty!" });
     return;
   }
 
   // Create a movie
-  const movies = new Movie({
-    title: req.body.title,
-    published_year: req.body.published_year,
-    Runtime:req.body.Runtime,
-    Genre:req.body.Genre,      //action ,funny,
-    Website:req.body.Website,
-    Poster:req.body.Poster,
-    Language:req.body.Language,
-    Awards:req.body.Awards,
-    Relased :req.body.Relased , //13 dec 2022
-    Boxoffice:req.body.Boxoffice,
-    Musicby:req.body.Musicby,
-    Budget:req.body.Budget,
-
+  const directors = new Director({
+    Director_name: req.body.Director_name,
+    
 
   });
 
   // Save movie in the database
-  movies
-    .save(movies)
+  directors
+    .save(directors)
     .then(data => {
       res.send(data);
     })
@@ -43,8 +32,8 @@ exports.create = (req, res) => {
 
 // Retrieve all movie from the database.
 exports.findAll = (req, res,next) => {
-  const title = req.query.title;
-  var condition = title ? { title: { $regex: new RegExp(title), $options: "i" } } : {};
+  const Director_name = req.query.title;
+  var condition = Director_name ? { Director_name: { $regex: new RegExp(Director_name), $options: "i" } } : {};
 
   Movie.find(condition)
     .then(data => {

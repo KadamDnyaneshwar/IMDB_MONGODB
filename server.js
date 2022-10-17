@@ -25,10 +25,12 @@ var corsOptions={
   });
 
   app.get("/", (req, res) => {
-    res.json({ message: "Welcome to bezkoder application." });
+    res.json({ message: "Welcome to IMDB application." });
   });
   require("./app/routes/movies.routes")(app);
-  
+  require("./app/routes/directors.router")(app);
+  require("./app/routes/actors.routes")(app);
+  require("./app/routes/writer.routes")(app);
   // set port, listen for requests
   const PORT = process.env.PORT || 3000;
   app.listen(PORT, () => {
