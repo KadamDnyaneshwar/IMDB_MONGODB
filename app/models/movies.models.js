@@ -1,10 +1,10 @@
 const { Schema, model } = require("mongoose");
-const { movies } = require(".");
+const { movies, production } = require(".");
 
 module.exports = mongoose => {
   var schema = mongoose.Schema(
     {
-
+      title:{type:String,require:true},
       published_year: {type:String,require:true},
       Relased: {type:String,},
       Runtime: {type:String, require:true},
@@ -20,6 +20,10 @@ module.exports = mongoose => {
     Boxoffice:{type:String},
     Musicby:{type:String},
     Budget:{type:String},
+    Actor_id:{type:Number},
+    Director_id:{type:Number},
+    Production_id:{type:Number},
+    Writer_id:{type:Number}
     //Director:[{type:Schema.Types.ObjectId,ref:Director},]
    
     }, 
@@ -34,7 +38,7 @@ module.exports = mongoose => {
     return object;
   
   });
-  
+              
 
   const Movie = mongoose.model("movies", schema);
   return Movie;

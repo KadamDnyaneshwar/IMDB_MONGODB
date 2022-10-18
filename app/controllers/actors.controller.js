@@ -11,6 +11,7 @@ exports.create = (req, res) => {
 
   // Create a movie
   const actors = new Actor({
+    Actor_id:req.body.Actor_id,
     Actor_name: req.body.Actor_name,
     
 
@@ -35,7 +36,7 @@ exports.findAll = (req, res) => {
   const Actor_name = req.query.Actor_name;
   var condition = Actor_name ? { Actor_name: { $regex: new RegExp(Actor_name), $options: "i" } } : {};
 
-  Movie.find(condition)
+  Actor.find(condition)
     .then(data => {
       res.send(data);
     })
@@ -47,11 +48,11 @@ exports.findAll = (req, res) => {
     });
 };
 
-// Find a single movie with an id
+// Find a single actor with an id
 exports.findOne = (req, res) => {
   //console.log(req.parms.id)
   const id = req.params.id; 
-  Movie.findById(id)
+  Actor.findById(id)
     .then(data => {
       if (!data)
         res.status(404).send({ message: "Not found movie with id " + id });
@@ -60,11 +61,11 @@ exports.findOne = (req, res) => {
     .catch(err => {
       res
         .status(500)
-        .send({ message: "Error retrieving movie with id=" + id });
+        .send({ message: "Error retrieving Actor with id=" + id });
     });
 };
 
-// Update a movie by the id in the request
+// Update a Actor by the id in the request
 exports.update = (req, res) => {
   if (!req.body) {
     return res.status(400).send({
@@ -74,40 +75,40 @@ exports.update = (req, res) => {
 
   const id = req.params.id;
 
- Movie.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+  Actor.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
     .then(data => {
       if (!data) {
         res.status(404).send({
-          message: `Cannot update movie with id=${id}. Maybe movie was not found!`
+          message: `Cannot update Actor with id=${id}. Maybe Actor was not found!`
         });
-      } else res.send({ message: "movie was updated successfully." });
+      } else res.send({ message: "Actor was updated successfully." });
     })
     .catch(err => {
       res.status(500).send({
-        message: "Error updating movie with id=" + id
+        message: "Error updating Actor with id=" + id
       });
     });
 };
 
-// Delete a movie with the specified id in the request
+// Delete a Actor with the specified id in the request
 exports.delete = (req, res) => {
   const id = req.params.id;
 
-  Movie.findByIdAndRemove(id, { useFindAndModify: false })
+  Actor.findByIdAndRemove(id, { useFindAndModify: false })
     .then(data => {
       if (!data) {
         res.status(404).send({
-          message: `Cannot delete movie with id=${id}. Maybe movie was not found!`
+          message: `Cannot delete Actor with id=${id}. Maybe Actor was not found!`
         });
       } else {
         res.send({
-          message: "movie was deleted successfully!"
+          message: "Actor was deleted successfully!"
         });
       }
     })
     .catch(err => {
       res.status(500).send({
-        message: "Could not delete movie with id=" + id
+        message: "Could not delete Actor with id=" + id
       });
     });
 };

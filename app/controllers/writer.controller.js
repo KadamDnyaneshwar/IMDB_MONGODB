@@ -11,6 +11,7 @@ exports.create = (req, res) => {
 
   // Create a Writer
   const writer = new Writer({
+    Writer_id:req.body.Writer_id,
     Writer_name: req.body.Writer_name,
     
 
@@ -35,7 +36,7 @@ exports.findAll = (req, res) => {
   const Writer_name = req.query.Writer_name;
   var condition = Writer_name ? { Writer_name: { $regex: new RegExp(Writer_name), $options: "i" } } : {};
 
-  Movie.find(condition)
+  Writer.find(condition)
     .then(data => {
       res.send(data);
     })
@@ -51,7 +52,7 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
   //console.log(req.parms.id)
   const id = req.params.id; 
-  Movie.findById(id)
+  Writer.findById(id)
     .then(data => {
       if (!data)
         res.status(404).send({ message: "Not found movie with id " + id });
@@ -74,7 +75,7 @@ exports.update = (req, res) => {
 
   const id = req.params.id;
 
- Movie.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+  Writer.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
     .then(data => {
       if (!data) {
         res.status(404).send({
@@ -93,7 +94,7 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
   const id = req.params.id;
 
-  Movie.findByIdAndRemove(id, { useFindAndModify: false })
+  Writer.findByIdAndRemove(id, { useFindAndModify: false })
     .then(data => {
       if (!data) {
         res.status(404).send({

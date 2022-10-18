@@ -31,6 +31,7 @@ var corsOptions={
   require("./app/routes/directors.router")(app);
   require("./app/routes/actors.routes")(app);
   require("./app/routes/writer.routes")(app);
+  require("./app/routes/production.routes")(app)
   // set port, listen for requests
   const PORT = process.env.PORT || 3000;
   app.listen(PORT, () => {

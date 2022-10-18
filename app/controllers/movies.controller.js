@@ -23,6 +23,11 @@ exports.create = (req, res) => {
     Boxoffice:req.body.Boxoffice,
     Musicby:req.body.Musicby,
     Budget:req.body.Budget,
+    Actor_id:req.body.Actor_id,
+    Director_id:req.body.Director_id,
+    Production_id:req.body.Production_id,
+    Writer_id:req.body.Writer_id,
+
 
 
   });

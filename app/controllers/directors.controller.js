@@ -11,6 +11,7 @@ exports.create = (req, res) => {
 
   // Create a movie
   const directors = new Director({
+    Director_id:req.body.Director_id,
     Director_name: req.body.Director_name,
     
 
@@ -35,7 +36,7 @@ exports.findAll = (req, res,next) => {
   const Director_name = req.query.title;
   var condition = Director_name ? { Director_name: { $regex: new RegExp(Director_name), $options: "i" } } : {};
 
-  Movie.find(condition)
+  Director.find(condition)
     .then(data => {
       res.send(data);
     })
@@ -51,7 +52,7 @@ exports.findAll = (req, res,next) => {
 exports.findOne = (req, res) => {
   //console.log(req.parms.id)
   const id = req.params.id; 
-  Movie.findById(id)
+  Director.findById(id)
     .then(data => {
       if (!data)
         res.status(404).send({ message: "Not found movie with id " + id });
@@ -74,7 +75,7 @@ exports.update = (req, res) => {
 
   const id = req.params.id;
 
- Movie.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+  Director.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
     .then(data => {
       if (!data) {
         res.status(404).send({
@@ -93,7 +94,7 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
   const id = req.params.id;
 
-  Movie.findByIdAndRemove(id, { useFindAndModify: false })
+  Director.findByIdAndRemove(id, { useFindAndModify: false })
     .then(data => {
       if (!data) {
         res.status(404).send({
