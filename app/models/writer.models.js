@@ -3,7 +3,7 @@ const { WriterSchema } = require("mongoose");
 module.exports = mongoose => {
     var WriterSchema = mongoose.Schema(
       {
-        Writer_id:{type:Number,require:true},
+        Writer_id:[Number],
         Writer_name: {type:String, require:true},
     
      // movies:[{type:Schema.Types.ObjectId,ref:movies},]

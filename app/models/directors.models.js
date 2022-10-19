@@ -3,7 +3,7 @@ const { DirecterSchema } = require("mongoose");
 module.exports = mongoose => {
     var DirecterSchema = mongoose.Schema(
       {
-        Director_id:{type:Number,require:true},
+        Director_id:[Number],
         Director_name: {type:String, require:true},
     
      // movies:[{type:Schema.Types.ObjectId,ref:movies},]

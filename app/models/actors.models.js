@@ -3,8 +3,7 @@ const { ActorSchema } = require("mongoose");
 module.exports = mongoose => {
     var ActorSchema = mongoose.Schema(
       {
-
-        Actor_id:{type:Number,require:true},
+        Actor_id:[Number],
         Actor_name: {type:String, require:true},
     
      // movies:[{type:Schema.Types.ObjectId,ref:movies},]
@@ -12,6 +11,7 @@ module.exports = mongoose => {
       },
      
       { timestamps: true }
+    
     );
     ActorSchema.method("toJSON", function() {
       const { __v, _id, ...object } = this.toObject();

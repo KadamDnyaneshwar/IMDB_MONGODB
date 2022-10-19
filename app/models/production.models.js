@@ -3,7 +3,7 @@ const { ProductionSchema } = require("mongoose");
 module.exports = mongoose => {
     var ProductionSchema = mongoose.Schema(
       {
-        Production_id:{type:Number,require:true},
+        Production_id:[Number],
         Production_name: {type:String, require:true},
     
      // movies:[{type:Schema.Types.ObjectId,ref:movies},]

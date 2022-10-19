@@ -20,10 +20,12 @@ module.exports = mongoose => {
     Boxoffice:{type:String},
     Musicby:{type:String},
     Budget:{type:String},
-    Actor_id:{type:Number},
-    Director_id:{type:Number},
-    Production_id:{type:Number},
-    Writer_id:{type:Number}
+    Actor_id:[Number],
+    Director_id:[Number],
+    Production_id:[Number],
+    Writer_id:[Number],
+
+     
     //Director:[{type:Schema.Types.ObjectId,ref:Director},]
    
     }, 
