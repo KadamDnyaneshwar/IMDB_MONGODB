@@ -16,7 +16,8 @@ const movies = require("../controllers/movies.controller.js");
   // Delete a movies with id
   router.delete("/:id",movies.delete);
 
-  app.use('/api/movies', router);
+
+app.use('/api/movies', router);
 };
   
 
